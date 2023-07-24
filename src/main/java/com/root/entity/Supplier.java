@@ -1,6 +1,6 @@
 package com.root.entity;
 
-import javax.persistence.Column;
+import javax.persistence.Column; 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,24 +19,19 @@ public class Supplier {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long supplierId;
-	
 
 	@Column(nullable = false,unique = true)
 	private String supplierName;
-	
 
 	@Column(nullable = false)
 	private String city;
-	
 
 	@Column(nullable = false)
 	private String postalCode;
-	
 
 	@Column(nullable = false)
 	private String country;
-	
 
 	@Column(nullable = false)
-	private String mobileNumber;
+	private String mobileNumber;	
 }

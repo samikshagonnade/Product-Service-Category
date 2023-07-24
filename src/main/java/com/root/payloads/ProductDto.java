@@ -1,6 +1,6 @@
 package com.root.payloads;
 
-import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor; 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
