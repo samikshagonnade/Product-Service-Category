@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.root.entity.Product;
-import com.root.payloads.ProductDto;
 
 public interface ProductRepo {
 	public Product addProduct(Product product);

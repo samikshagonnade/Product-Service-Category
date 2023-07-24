@@ -1,6 +1,6 @@
 package com.root.payloads;
 
-import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor; 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,5 +14,5 @@ public class CategoryDto {
 	private String discription;
 	private Integer discount;
 	private Integer gst;
-	private Integer deliveryCharge;
+	private Integer deliveryCharge;	
 }

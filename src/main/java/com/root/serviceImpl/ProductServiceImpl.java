@@ -1,11 +1,10 @@
 package com.root.serviceImpl;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.root.entity.Product;
@@ -17,25 +16,22 @@ import com.root.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 
 	@Autowired
-	private ProductRepo repo;
+	private ProductRepo productRepo;
 	
 	@Autowired
 	private ModelMapper mapper;
 	
 	@Override
 	public ProductDto addProduct(ProductDto productDto) {
-		
-	Product product = this.mapper.map(productDto, Product.class);
-	Product addProduct = this.repo.addProduct(product);
-	ProductDto map = this.mapper.map(addProduct, ProductDto.class);
-	return map;
-		
+		Product product = this.mapper.map(productDto, Product.class);
+		Product addProduct = this.productRepo.addProduct(product);
+		return this.mapper.map(addProduct, ProductDto.class);
 	}
 
 	@Override
 	public ProductDto getProductById(Long productId) {
-		// TODO Auto-generated method stub
-		return null;
+		Product product = this.productRepo.getProductById(productId);
+		return this.mapper.map(product, ProductDto.class);
 	}
 
 	@Override
@@ -51,13 +47,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Boolean deleteProduct(Long id) {
+	public ProductDto deleteProduct(Long productId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Boolean updateProductByProductId(Long productId, Map<String, Object> productFields) {
+	public ProductDto updateProductByProductId(Long productId, Map<String, Object> productFields) {
 		// TODO Auto-generated method stub
 		return null;
 	}

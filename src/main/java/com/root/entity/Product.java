@@ -2,7 +2,6 @@ package com.root.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,23 +22,20 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long productId;
 	
-	
 	@Column(nullable = false,unique = true)
 	private String productName;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name = "supplierId")
 	private Supplier supplierId;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	@JoinColumn(name = "categoryId")
 	private Category categoryId;
 	
-	
 	@Column(nullable = false)
 	private Long productQuantity;
-	
 
 	@Column(nullable = false)
-	private Double productPrice;
+	private Double productPrice;	
 }

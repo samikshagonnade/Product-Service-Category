@@ -1,17 +1,14 @@
 package com.root.repoImpl;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.root.entity.Product;
-import com.root.payloads.ProductDto;
 import com.root.repo.ProductRepo;
 
 @Repository
@@ -23,14 +20,12 @@ public class ProductRepoImpl implements ProductRepo {
 	@Override
 	public Product addProduct(Product product) {
 		Session session = factory.openSession();
-		Transaction transaction = session.beginTransaction();
-		
 		try {
 			session.save(product);
-			transaction.commit();
-			return product;
-			
-		} catch (Exception e) {
+			session.beginTransaction().commit();
+			Product productById = this.getProductById(product.getProductId());
+			return productById;
+		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -38,8 +33,16 @@ public class ProductRepoImpl implements ProductRepo {
 
 	@Override
 	public Product getProductById(Long productId) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = factory.openSession();
+		try {
+			
+			Product product = session.get(Product.class, productId);
+			return product;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

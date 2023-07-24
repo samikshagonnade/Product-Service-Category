@@ -1,8 +1,7 @@
 package com.root.service;
 
-import java.util.List;
+import java.util.List; 
 
-import com.root.entity.Category;
 import com.root.payloads.CategoryDto;
 
 public interface CategoryService {
