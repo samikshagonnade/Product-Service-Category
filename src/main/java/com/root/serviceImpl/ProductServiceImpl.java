@@ -2,6 +2,7 @@ package com.root.serviceImpl;
 
 import java.util.List; 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,51 +36,55 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDto getProductByName(String productName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductDto> getProductByName(String productName) { // List(product1 , product 2 ... n )
+		List<Product> products = this.productRepo.getProductByName(productName);
+		return products.stream().map(eachProduct -> this.mapper.map(eachProduct, ProductDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<ProductDto> getAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = this.productRepo.getAllProducts();
+		return products.stream().map(eachProduct -> this.mapper.map(eachProduct, ProductDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public ProductDto deleteProduct(Long productId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteProduct(Long productId) {
+		return this.productRepo.deleteProduct(productId);
+	}
+	
+	@Override
+	public ProductDto updateProductById(Long productId, ProductDto productDto) {
+		Product product = this.mapper.map(productDto, Product.class);
+		Product product2 = this.productRepo.updateProductById(productId, product);
+		return this.mapper.map(product2, ProductDto.class);
 	}
 
 	@Override
 	public ProductDto updateProductByProductId(Long productId, Map<String, Object> productFields) {
-		// TODO Auto-generated method stub
-		return null;
+		Product product = productRepo.updateProductByProductId(productId, productFields);
+		return this.mapper.map(product, ProductDto.class);
 	}
 
 	@Override
 	public List<ProductDto> sortProducts(String fieldName, String order) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> sortProducts = this.productRepo.sortProducts(fieldName, order);
+		return sortProducts.stream().map(e -> this.mapper.map(e, ProductDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<ProductDto> getMaxPriceProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = this.productRepo.getMaxPriceProducts();
+		return products.stream().map(e -> this.mapper.map(e, ProductDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public Double countSumOfProductPrice() {
-		// TODO Auto-generated method stub
-		return null;
+	public Double sumOfAllProductPrice() {
+		return this.productRepo.sumOfAllProductPrice();
 	}
 
 	@Override
 	public Long getTotalCountOfProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.productRepo.getTotalCountOfProducts();
 	}
 
 }
