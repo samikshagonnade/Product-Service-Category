@@ -1,6 +1,7 @@
 package com.root.serviceImpl;
 
-import java.util.List; 
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.root.entity.Category;
 import com.root.payloads.CategoryDto;
+import com.root.payloads.ProductDto;
 import com.root.repo.CategoryRepo;
 import com.root.service.CategoryService;
 
@@ -29,20 +31,20 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public CategoryDto getCategoryById(Long categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		Category category = this.categoryRepo.getCategoryById(categoryId);
+		return this.mapper.map(category, CategoryDto.class);
 	}
 
 	@Override
-	public CategoryDto getCategoryByName(String categoryName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CategoryDto> getCategoryByName(String categoryName) {
+		List<Category> category = this.categoryRepo.getCategoryByName(categoryName);
+		return category.stream().map(e -> this.mapper.map(e, CategoryDto.class)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<CategoryDto> getAllCAtegory() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Category> category = this.categoryRepo.getAllCAtegory();
+		return category.stream().map(e -> this.mapper.map(e, CategoryDto.class)).collect(Collectors.toList());
 	}
 
 }

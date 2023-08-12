@@ -66,8 +66,8 @@ public class ProductRepoImpl implements ProductRepo {
 	public List<Product> getProductByName(String productName) {
 		Session session = factory.openSession();
 		try {
-			Criteria criteria = session.createCriteria(Product.class); // Select * From Product where product name = 'pen'
-			List list = criteria.add(Restrictions.ilike("productName", productName, MatchMode.ANYWHERE)).list();
+			Criteria criteria = session.createCriteria(Product.class); // Select * From Product 
+			List list = criteria.add(Restrictions.ilike("productName", productName, MatchMode.ANYWHERE)).list(); // where(add) product name =(ilike) 'pen'
 			if(!list.isEmpty()) {
 				return list;
 			}else {

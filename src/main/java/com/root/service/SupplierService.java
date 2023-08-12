@@ -8,6 +8,6 @@ public interface SupplierService {
 
 	public SupplierDto addSupplier(SupplierDto supplierDto);
 	public SupplierDto getSupplierById(Long supplierId);
-	public SupplierDto getSupplierByName(String supplierName);
+	public List<SupplierDto> getSupplierByName(String supplierName);
 	public List<SupplierDto> getAllSupplier();
 }

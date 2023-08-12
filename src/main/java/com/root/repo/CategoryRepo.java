@@ -8,6 +8,6 @@ public interface CategoryRepo {
 
 	public Category addCategory(Category category);
 	public Category getCategoryById(Long categoryId);
-	public Category getCategoryByName(String categoryName);
+	public List<Category> getCategoryByName(String categoryName);
 	public List<Category> getAllCAtegory();
 }
